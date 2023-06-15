@@ -40,7 +40,7 @@ Route::group(['namespace' => "App\Http\Controllers\Admin"], function (){
            Route::get('/product/{product}', ShowController::class)->name('show');
            Route::get('/products/create', CreateController::class)->name('create');
            Route::post('/products', StoreController::class)->name('store');
-           Route::get('/product/{product}', EditController::class)->name('edit');
+           Route::get('/product/{product}/edit', EditController::class)->name('edit');
            Route::patch('/product/{product}', UpdateController::class)->name('update');
            Route::delete('/product/{product}', DestroyController::class)->name('destroy');
 
@@ -52,6 +52,14 @@ Route::group(['namespace' => "App\Http\Controllers\Admin"], function (){
            Route::delete('/category/{category}', DestroyController::class)->name('destroy');
            Route::get('/categories/create', CreateController::class)->name('create');
            Route::post('/categories', StoreController::class)->name('store');
+
+       });
+
+       Route::group(['namespace' => 'Order', 'as' => 'order.'], function(){
+
+           Route::get('/orders', IndexController::class)->name('index');
+           Route::get('/order/{order}', EditController::class)->name('edit');
+           Route::patch('/order/{order}', UpdateController::class)->name('update');
 
        });
 

@@ -24,6 +24,12 @@ class LoginProcessController extends Controller
             return redirect()->intended('/');
         }
 
+        if (Auth('admin')->attempt($credentials)){
+            $request->session()->regenerate();
+
+            return to_route('admin.product.index');
+        }
+
         return back()->withErrors([
             'login' => 'Такого пользователя не существует',
         ])->onlyInput('login');

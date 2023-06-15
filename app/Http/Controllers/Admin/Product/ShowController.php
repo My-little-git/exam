@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ShowController extends Controller
+class ShowController extends BaseController
 {
     /**
      * Handle the incoming request.

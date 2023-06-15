@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\ProductModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     /**
      * Handle the incoming request.

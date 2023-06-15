@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
-class DestroyController extends Controller
+class DestroyController extends BaseController
 {
     /**
      * Handle the incoming request.
      */
     public function __invoke(Product $product)
     {
-        $product->delete();
+        $this->service->destroy($product);
+
         return back();
     }
 }

@@ -16,7 +16,7 @@
                                 name="login"
                                 value="{{ old('login') }}"
                                 placeholder="ivan2000"
-                                pattern="[A-Z][a-z]"
+                                pattern="^[A-Za-z0-9]+$"
                                 type="text"
                                 class="@error('login') is-invalid @enderror form-control"
                                 id="login">

@@ -8,15 +8,27 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('about') }}">О нас</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('product.index') }}">Каталог</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('location') }}">Где нас найти?</a>
-                </li>
+                @auth('admin')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.product.index') }}" class="nav-link">Товары</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.category.index') }}" class="nav-link">Категории</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.order.index') }}" class="nav-link">Заказы</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('about') }}">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product.index') }}">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('location') }}">Где нас найти?</a>
+                    </li>
+                @endauth
             </ul>
             <div class="auth-navbar">
                 @auth('web')

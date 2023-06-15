@@ -2,30 +2,19 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Product\UpdateRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, Product $product)
+    public function __invoke(UpdateRequest $request, Product $product)
     {
-        $data = $request->validate([
-            'images' => ['array'],
-            'images.*' => ['image', 'mimes:jpg,jpeg,png,webp'],
-            'name' => ['required'],
-            'price' => ['required'],
-            'description' => [],
-            'year' => ['required'],
-            'category_id' => ['required', 'integer'],
-            'country_id' => ['required', 'integer'],
-            'model_id' => ['required', 'integer'],
-        ]);
+        $data = $request->validated();
 
-        $product->update($data);
+        $this->service->update($data, $product);
 
         return to_route('admin.product.index');
     }

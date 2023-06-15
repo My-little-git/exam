@@ -23,7 +23,7 @@ class User extends Authenticatable
         'surname',
         'patronymic',
         'email',
-        'phone',
+        'login',
         'password',
     ];
 
@@ -46,10 +46,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function password(){
-        return Attribute::make(
-            set: fn($password) => bcrypt($password)
-        );
-    }
 }

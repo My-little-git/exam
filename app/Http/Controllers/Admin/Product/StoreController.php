@@ -2,30 +2,23 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Product\StoreRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\ProductImages;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Console\Input\Input;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(StoreRequest $request)
     {
-        $data = $request->validate([
-            'images' => ['array'],
-            'images.*' => ['image', 'mimes:jpg,jpeg,png,webp'],
-            'name' => ['required'],
-            'price' => ['required'],
-            'description' => [],
-            'year' => ['required'],
-            'category_id' => ['required', 'integer'],
-            'country_id' => ['required', 'integer'],
-            'model_id' => ['required', 'integer'],
-        ]);
+        $data = $request->validated();
 
-        Product::create($data);
+        $this->service->store($data);
 
         return to_route('admin.product.index');
     }

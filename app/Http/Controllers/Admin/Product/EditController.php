@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\Admin\Product;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Country;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\ProductModel;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
     /**
      * Handle the incoming request.
      */
     public function __invoke(Product $product)
     {
-        return view('admin.product.edit', compact('product'));
+        $models = ProductModel::all();
+        $categories = Category::all();
+        $countries = Country::all();
+
+        return view('admin.product.edit', compact('product', 'models', 'categories', 'countries'));
     }
 }

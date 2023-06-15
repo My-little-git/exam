@@ -17,6 +17,7 @@ class Product extends Model
         'model_id',
         'category_id',
         'country_id',
+        'amount'
     ];
 
     public function model(){
